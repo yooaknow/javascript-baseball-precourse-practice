@@ -12,3 +12,12 @@
 
 볼, 스트라이크, 낫싱 변수 따로 만들기 
 */
+
+Const UsetInput =  "153";
+Const ComputerInput1 = "153";//3스트라이크
+Const ComputerInput2 = "136" //1볼 1스트라이크
+Const ComputerInput3 = "256"; //1스트라이크
+ConstComputerInput4 = "264"; //낫싱
+
+
+
