@@ -35,7 +35,18 @@ class Controller {
       const strikeCount = strike.length;
       const ballNumber= ball.length;
 
-      OutputView.printBall(ballNumber);
+      if (strikeCount == 0 && ballNumber > 0) {
+         OutputView.printBall(ballNumber);
+       } else if (strikeCount > 0 && ballNumber == 0) {
+        OutputView.printStrike(strikeCount);
+      } else if (strikeCount > 0 && ballNumber > 0) {
+         OutputView.printBallStrike(strikeCount);
+       } else if (strikeCount ===3 ) {
+         OutputView.printStrikeFinish(strikeCount);
+     } else {
+       OutputView.printBallStrike(strikeCount);
+      }
+
 
 
       // Console.print(strikeCount);
