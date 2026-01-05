@@ -25,6 +25,7 @@ class Controller {
     try {
       const Start = await this.inputView.Start();
       const UserNumber = await this.inputView.readCount();
+
       let UserInputArray = UserNumber.split('').map(Number);
       const ComputerInput = RandomLottoNumber();
 
@@ -34,9 +35,11 @@ class Controller {
       const strikeCount = strike.length;
       const ballNumber= ball.length;
 
+      OutputView.printBall(ballNumber);
+
+
       // Console.print(strikeCount);
       // Console.print(ballNumber);
-      
 
     } catch (error) {
       OutputView.printError(error.message);
