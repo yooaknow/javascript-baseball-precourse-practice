@@ -17,3 +17,22 @@ ex)
 ...
 */ 
 
+class OutputView {
+  static Ball(ball) {
+      Console.print(`${ball}볼`);
+  }
+  static BallStrike(ball,strike) {
+      Console.print(`${ball}볼 ${strike}스트라이크`);
+  }
+  static Strike(strike) {
+      Console.print(`${strike}스트라이크`);
+  }
+
+  static StrikeFinish(strike) {
+      Console.print(`${strike}스트라이크`);
+      Console.print(`3개의 숫자를 모두 맞히셨습니다! 게임 종료`);
+  }
+
+}
+export default OutputView;
+

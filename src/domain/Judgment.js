@@ -16,16 +16,16 @@
 
 import { Console }from "@woowacourse/mission-utils";
 
-let UserInput = "153";
-let UserInputArray = [...UserInput];
+// let UserInput = "153";
+// let UserInputArray = [...UserInput];
 
-let ComputerInput1 = [1,5,3]; //3스트라이크
-// let ComputerInput2 = [1,3,6]; //1볼 1스트라이크
-// let ComputerInput3 = [2,5,6]; //1스트라이크
-// let ConstComputerInput4 = [2,6,4]; //낫싱
+// let ComputerInput1 = [1,5,3]; //3스트라이크
+// // let ComputerInput2 = [1,3,6]; //1볼 1스트라이크
+// // let ComputerInput3 = [2,5,6]; //1스트라이크
+// // let ConstComputerInput4 = [2,6,4]; //낫싱
 
-const array1 = [1, 2, 3, 4, 5, 6];
-const array2 = [2, 3, 4, 1, 5, 5];
+// const array1 = [1, 2, 3, 4, 5, 6];
+// const array2 = [2, 3, 4, 1, 5, 5];
 
 
 export function findStrike(arr1, arr2){
@@ -55,8 +55,8 @@ export function findCommonExcludingSameIndex(arr1, arr2) {
 }
 
 
-const result1 =  findStrike (array1, array2);
-const result2 = findCommonExcludingSameIndex(array1, array2);
+// const result1 =  findStrike (array1, array2);
+// const result2 = findCommonExcludingSameIndex(array1, array2);
 
-Console.print(result1); // strike의 갯수
-Console.print(result2); // ball의 갯수
+// Console.print(result1); // strike의 갯수
+// Console.print(result2); // ball의 갯수
