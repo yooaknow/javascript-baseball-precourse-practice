@@ -5,5 +5,39 @@
  4. 예상 값에 대한 결과를 출력해주기 -> OutPutView
  5. 모두 맞히면 게임 종료 / 다시 하려면 다시 시작 -> domain
 */ 
+/*
+  1. 입력
+  2. 결과 출력
+*/
+
+import { Console } from "@woowacourse/mission-utils";
+import InputView from "../view/InputView.js";
+import OutputView from "../view/OutputView.js";
+
+class Controller {
+  constructor() {
+    this.inputView = new InputView();
+  }
+
+  async run() {
+    try {
+      const Start = await this.inputView.Start();
+      const UserNumber = await this.inputView.readCount();
+
+      
 
 
+      
+
+
+
+
+
+    } catch (error) {
+      OutputView.printError(error.message);
+      // throw error; // 테스트에서 에러 확인할 때 필요
+    }
+  }
+}
+
+export default Controller;
