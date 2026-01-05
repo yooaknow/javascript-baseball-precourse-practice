@@ -31,6 +31,13 @@ class Controller {
       const strike = findStrike(UserInputArray, ComputerInput);
       const ball = findCommonExcludingSameIndex(UserInputArray, ComputerInput);
 
+      const strikeCount = strike.length;
+      const ballNumber= ball.length;
+
+      // Console.print(strikeCount);
+      // Console.print(ballNumber);
+      
+
     } catch (error) {
       OutputView.printError(error.message);
       // throw error; // 테스트에서 에러 확인할 때 필요
