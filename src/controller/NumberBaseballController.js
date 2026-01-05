@@ -28,6 +28,9 @@ class Controller {
       let UserInputArray = UserNumber.split('').map(Number);
       const ComputerInput = RandomLottoNumber();
 
+      const strike = findStrike(UserInputArray, ComputerInput);
+      const ball = findCommonExcludingSameIndex(UserInputArray, ComputerInput);
+
     } catch (error) {
       OutputView.printError(error.message);
       // throw error; // 테스트에서 에러 확인할 때 필요
