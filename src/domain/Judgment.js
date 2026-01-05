@@ -28,7 +28,7 @@ const array1 = [1, 2, 3, 4, 5, 6];
 const array2 = [2, 3, 4, 1, 5, 5];
 
 
-function findStrike(arr1, arr2){
+export function findStrike(arr1, arr2){
   const strike = []; 
 
   if (arr1.length === arr2.length) {
@@ -41,7 +41,7 @@ function findStrike(arr1, arr2){
 }
 
 
-function findCommonExcludingSameIndex(arr1, arr2) {
+export function findCommonExcludingSameIndex(arr1, arr2) {
     const ball = [];
     const arr1Set = new Set(arr1); 
 
