@@ -16,8 +16,8 @@ let NumberArray =Random.pickUniqueNumbersInRange(1,9,3)
   return NumberArray;
 } 
 
-const result = RandomLottoNumber();
-Console.print(result);
+// const result = RandomLottoNumber();
+// Console.print(result);
 
 // 숫자 배열 생성
 

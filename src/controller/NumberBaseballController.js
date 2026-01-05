@@ -13,6 +13,8 @@
 import { Console } from "@woowacourse/mission-utils";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
+import { RandomLottoNumber } from "../domain/RandomNumderGenerator.js";
+import { findStrike, findCommonExcludingSameIndex }  from "../domain/Judgment.js";
 
 class Controller {
   constructor() {
@@ -23,15 +25,8 @@ class Controller {
     try {
       const Start = await this.inputView.Start();
       const UserNumber = await this.inputView.readCount();
-
-      
-
-
-      
-
-
-
-
+      let UserInputArray = UserNumber.split('').map(Number);
+      const ComputerInput = RandomLottoNumber();
 
     } catch (error) {
       OutputView.printError(error.message);
