@@ -20,10 +20,11 @@ class InputView {
     return inputCount;
   }
 
-   async readReplay() {
-    const readReplay = await Console.readLineAsync("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.\n");
-    return readReplay;
-  }
+  async readReplay() {
+  const value = await Console.readLineAsync("");
+  return value;
+}
+
 }
 
 export default InputView;
