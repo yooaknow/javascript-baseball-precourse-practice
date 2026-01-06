@@ -25,7 +25,7 @@ class OutputView {
   static printBallStrike(ball,strike) {
       Console.print(`${ball}볼 ${strike}스트라이크`);
   }
-  static  printStrike(strike) {
+  static printStrike(strike) {
       Console.print(`${strike}스트라이크`);
   }
   static  printZero() {
@@ -36,6 +36,11 @@ class OutputView {
       Console.print(`${strike}스트라이크`);
       Console.print(`3개의 숫자를 모두 맞히셨습니다! 게임 종료`);
   }
+
+  static printReplayGuide() {
+  Console.print("게임을 새로 시작하려면 1, 종료하려면 2를 입력하세요.");
+}
+
 
   static printError(message) {
     Console.print(`${message}`);
