@@ -84,10 +84,15 @@ class Validator {
       throw new Error(`[ERROR] 길이는 ${length}이어야 합니다.`);
     }
   }
+static validateMaxLength(input, length) {
+    if (input.length !== length) {
+      throw new Error("[ERROR] 3자리 숫자를 입력해야 합니다.");
+    }
+  }
 
-  static validateMinLength(str, minLength) {
-    if (str.length < minLength) {
-      throw new Error(`[ERROR] 최소 ${minLength}자 이상이어야 합니다.`);
+  static validateReplay(input) {
+    if (input !== "1" && input !== "2") {
+      throw new Error("[ERROR] 1 또는 2만 입력 가능합니다.");
     }
   }
 

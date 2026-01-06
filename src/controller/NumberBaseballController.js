@@ -10,10 +10,9 @@
   2. 결과 출력
 */
 
-import { Console } from "@woowacourse/mission-utils";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
-
+import Validator from "../utils/Validator.js";
 import { RandomLottoNumber } from "../domain/RandomNumderGenerator.js";
 import { findStrike, findCommonExcludingSameIndex } from "../domain/Judgment.js";
 
@@ -25,49 +24,59 @@ class NumberBaseballController {
   async run() {
     try {
       await this.inputView.Start();
+
       let restart = true;
-      
+
       while (restart) {
-      const ComputerInput = RandomLottoNumber();
+        // 컴퓨터 숫자 (숫자 배열로 통일)
+        const ComputerInput = RandomLottoNumber().map(Number);
 
-      let strikeCount = 0;
+        let strikeCount = 0;
 
-      while (strikeCount !== 3) {
-        const userInput = await this.inputView.readCount();
+        while (strikeCount !== 3) {
+          const userInput = await this.inputView.readCount();
+          Validator.validateMaxLength(userInput, 3);
 
-        const userArray = userInput.split("").map(Number);
+          const userArray = userInput.split("").map(Number);
 
-        const strike = findStrike(userArray, ComputerInput);
-        const ball = findCommonExcludingSameIndex(userArray, ComputerInput);
+          const strike = findStrike(userArray, ComputerInput);
+          const ball = findCommonExcludingSameIndex(userArray, ComputerInput);
 
-        const ballCount = ball.length;
-        strikeCount = strike.length;
+          const ballCount = ball.length;
+          strikeCount = strike.length;
 
-        if (strikeCount === 3) {
-          OutputView.printStrikeFinish(strikeCount);
-          break;
-        }
+          if (strikeCount === 3) {
+            // 정답!
+            OutputView.printStrikeFinish(strikeCount);
+            OutputView.printReplayGuide();
 
-        if (strikeCount > 0 && ballCount > 0) {
-          OutputView.printBallStrike(ballCount, strikeCount);
-        } else if (strikeCount > 0) {
-          OutputView.printStrike(strikeCount);
-        } else if (ballCount > 0) {
-          OutputView.printBall(ballCount);
-        } else {
-          OutputView.printZero();
+            const replay = await this.inputView.readReplay();
 
+            if (replay === "1") {
+              // 새 게임
+              break;
+            }
+
+            if (replay === "2") {
+              restart = false;
+              break;
+            }
+          }
+
+          if (strikeCount > 0 && ballCount > 0) {
+            OutputView.printBallStrike(ballCount, strikeCount);
+          } else if (strikeCount > 0) {
+            OutputView.printStrike(strikeCount);
+          } else if (ballCount > 0) {
+            OutputView.printBall(ballCount);
+          } else {
+            OutputView.printZero();
+          }
         }
       }
-    
-
-    const readReplay = await this.inputView.readReplay();
-    if (readReplay === '1') restart = true;
-    if (readReplay === '2') restart = false
-
-    }} catch (error) {
+    } catch (error) {
       OutputView.printError(error.message);
-      throw error; 
+      throw error;
     }
   }
 }

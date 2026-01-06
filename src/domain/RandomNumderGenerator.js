@@ -6,18 +6,31 @@
 함수로 만들어도 될듯
 */
 
-import { Random, Console }from "@woowacourse/mission-utils";
+import { Random } from "@woowacourse/mission-utils";
 
 export function RandomLottoNumber() {
+  const numbers = [];
 
-let NumberArray =Random.pickUniqueNumbersInRange(1,9,3)
-  .sort((a, b) => a - b);
-  
-  return NumberArray;
-} 
+  while (numbers.length < 3) {
+    const num = Random.pickNumberInRange(1, 9);
+
+    if (!numbers.includes(num)) {
+      numbers.push(num);
+    }
+  }
+
+  return numbers;
+}
 
 // const result = RandomLottoNumber();
 // Console.print(result);
 
 // 숫자 배열 생성
 
+/*
+여기서 오류가 남.
+테스트 코드를 살펴본 결과 
+컴퓨터 숫자 3개가 필요함
+숫자를 1개씩 뽑는 함수 pickNumberInRange 를
+3번 호출해야 함.
+*/
