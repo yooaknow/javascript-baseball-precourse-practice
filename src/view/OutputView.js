@@ -28,6 +28,9 @@ class OutputView {
   static  printStrike(strike) {
       Console.print(`${strike}스트라이크`);
   }
+  static  printZero() {
+      Console.print(`낫싱`);
+  }
 
   static printStrikeFinish(strike) {
       Console.print(`${strike}스트라이크`);

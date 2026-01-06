@@ -13,50 +13,63 @@
 import { Console } from "@woowacourse/mission-utils";
 import InputView from "../view/InputView.js";
 import OutputView from "../view/OutputView.js";
-import { RandomLottoNumber } from "../domain/RandomNumderGenerator.js";
-import { findStrike, findCommonExcludingSameIndex }  from "../domain/Judgment.js";
 
-class Controller {
+import { RandomLottoNumber } from "../domain/RandomNumderGenerator.js";
+import { findStrike, findCommonExcludingSameIndex } from "../domain/Judgment.js";
+
+class NumberBaseballController {
   constructor() {
     this.inputView = new InputView();
   }
 
   async run() {
     try {
-      const Start = await this.inputView.Start();
-      const UserNumber = await this.inputView.readCount();
-
-      let UserInputArray = UserNumber.split('').map(Number);
+      await this.inputView.Start();
+      let restart = true;
+      
+      while (restart) {
       const ComputerInput = RandomLottoNumber();
 
-      const strike = findStrike(UserInputArray, ComputerInput);
-      const ball = findCommonExcludingSameIndex(UserInputArray, ComputerInput);
+      let strikeCount = 0;
 
-      const strikeCount = strike.length;
-      const ballNumber= ball.length;
+      while (strikeCount !== 3) {
+        const userInput = await this.inputView.readCount();
 
-      if (strikeCount == 0 && ballNumber > 0) {
-         OutputView.printBall(ballNumber);
-       } else if (strikeCount > 0 && ballNumber == 0) {
-        OutputView.printStrike(strikeCount);
-      } else if (strikeCount > 0 && ballNumber > 0) {
-         OutputView.printBallStrike(strikeCount);
-       } else if (strikeCount ===3 ) {
-         OutputView.printStrikeFinish(strikeCount);
-     } else {
-       OutputView.printBallStrike(strikeCount);
+        const userArray = userInput.split("").map(Number);
+
+        const strike = findStrike(userArray, ComputerInput);
+        const ball = findCommonExcludingSameIndex(userArray, ComputerInput);
+
+        const ballCount = ball.length;
+        strikeCount = strike.length;
+
+        if (strikeCount === 3) {
+          OutputView.printStrikeFinish(strikeCount);
+          break;
+        }
+
+        if (strikeCount > 0 && ballCount > 0) {
+          OutputView.printBallStrike(ballCount, strikeCount);
+        } else if (strikeCount > 0) {
+          OutputView.printStrike(strikeCount);
+        } else if (ballCount > 0) {
+          OutputView.printBall(ballCount);
+        } else {
+          OutputView.printZero();
+
+        }
       }
+    
 
+    const readReplay = await this.inputView.readReplay();
+    if (readReplay === '1') restart = true;
+    if (readReplay === '2') restart = false
 
-
-      // Console.print(strikeCount);
-      // Console.print(ballNumber);
-
-    } catch (error) {
+    }} catch (error) {
       OutputView.printError(error.message);
-      // throw error; // 테스트에서 에러 확인할 때 필요
+      throw error; 
     }
   }
 }
 
-export default Controller;
+export default NumberBaseballController;
